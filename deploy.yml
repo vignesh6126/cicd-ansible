@@ -1,19 +1,13 @@
-- hosts: localhost
+- hosts: local
   connection: local
   gather_facts: false
-
   tasks:
-
-    - name: Create web directory
+    - name: Ensure /var/www/contact-form exists
       file:
         path: /var/www/contact-form
         state: directory
 
-    - name: Deploy index.html
+    - name: Copy index.html
       copy:
         src: index.html
         dest: /var/www/contact-form/index.html
-
-    - name: Print deployment message
-      debug:
-        msg: "index.html deployed successfully to /var/www/contact-form/"
