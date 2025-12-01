@@ -15,11 +15,12 @@ pipeline {
         }
 
         stage('Deploy using Ansible') {
-            steps {
-                bat """
-                wsl ansible-playbook /mnt/c/ProgramData/Jenkins/.jenkins/workspace/cicd-ansible/deploy.yml
-                """
-            }
-        }
+    steps {
+        bat """
+        wsl ansible-playbook /mnt/c/ProgramData/Jenkins/.jenkins/workspace/cicd-ansible/deploy.yml -i /mnt/c/ProgramData/Jenkins/.jenkins/workspace/cicd-ansible/inventory
+        """
+    }
+}
+
     }
 }
