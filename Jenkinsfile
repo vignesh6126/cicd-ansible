@@ -14,10 +14,10 @@ pipeline {
         }
 
         stage('Deploy using Ansible') {
-            steps {
-                bat 'wsl ansible-playbook deploy.yml'
-
-            }
-        }
+    agent { label 'wsl' }
+    steps {
+        sh 'ansible-playbook deploy.yml'
+    }
+}
     }
 }
