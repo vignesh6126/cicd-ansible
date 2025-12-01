@@ -14,10 +14,10 @@ pipeline {
         }
 
         stage('Deploy using Ansible') {
-    agent { label 'wsl' }
     steps {
-        sh 'ansible-playbook deploy.yml'
+        bat 'wsl ansible-playbook /mnt/c/ProgramData/Jenkins/.jenkins/workspace/cicd-ansible/deploy.yml'
     }
 }
+
     }
 }
