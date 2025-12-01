@@ -1,13 +1,22 @@
 - hosts: all
   connection: local
   gather_facts: false
+  become: true            # enable privilege escalation for the play
+  become_method: sudo
+
   tasks:
     - name: Ensure /var/www/contact-form exists
       file:
         path: /var/www/contact-form
         state: directory
+        owner: root
+        group: root
+        mode: '0755'
 
-    - name: Copy index.html
+    - name: Copy index.html to target directory
       copy:
         src: index.html
         dest: /var/www/contact-form/index.html
+        owner: root
+        group: root
+        mode: '0644'
